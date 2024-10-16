@@ -98,9 +98,9 @@ public class FunctionLibrary
 		public static void clickAction(String LocatorType,String LocatorValue)
 		{
 			if(LocatorType.equalsIgnoreCase("xpath"))
-			{
-				driver.findElement(By.xpath(LocatorValue)).click();
-			}
+				{
+					driver.findElement(By.xpath(LocatorValue)).click();
+				}
 			if(LocatorType.equalsIgnoreCase("name"))
 			{
 				driver.findElement(By.name(LocatorValue)).click();
