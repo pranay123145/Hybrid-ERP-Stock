@@ -2,6 +2,8 @@ package CommonFunctions;
 
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
@@ -24,10 +26,10 @@ public class FunctionLibrary
 	
 	//method for launching browser
 
-	public static WebDriver startBrowser()
+	public static WebDriver startBrowser() throws Throwable
 	{
 		conpro = new Properties();
-		conpro.load(new FileInputStream("PropertyFiles\\Environment.properties"));
+		conpro.load(new FileInputStream("./Property Files/Environment.properties"));
 		if(conpro.getProperty("Browser").equalsIgnoreCase("chrome"))
 		{
 			driver = new ChromeDriver();
@@ -115,13 +117,17 @@ public class FunctionLibrary
 		public static void validateTitle(String Expected_Title)
 		{
 			String Actual_title = driver.getTitle();
-			try {
-			Assert.assertEquals(Actual_title, Expected_Title,"Title is Not Matching");
-			}catch(AssertionError a)
+			try 
+			{
+				Assert.assertEquals(Actual_title, Expected_Title,"Title is Not Matching");
+			}
+			catch(AssertionError a)
 			{
 				System.out.println(a.getMessage());
+				
 			}
 		}
+		
 		//method for close browser
 		public static void closeBrowser()
 		{
